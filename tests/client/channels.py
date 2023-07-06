@@ -23,18 +23,35 @@ def channels_test(bot):
         #updating channels
         print("Updating Channels")
         id = Data(bot.create_channel(server_id=server_id, channel_type="chat", name=name)).id
-        bot.update_channel(id, name="Updated Channel", topic="Updated Topic", is_public=False)
+        data = Data(bot.update_channel(id, name="Updated Channel", topic="Updated Topic", is_public=False))
+        if not data.updated_at:
+            raise Exception("No updated_at in response")
+        if not data.updated_by:
+            raise Exception("No updated_by in response")
         bot.delete_channel(id)
 
         #getting channels
         print("Getting Channels")
-        data = Data(bot.create_channel(server_id=server_id, channel_type="chat", name=name, topic=topic, is_public=False))
+        data = Data(bot.create_channel(server_id=server_id, channel_type="chat", name=name, topic=topic, is_public=True))
         if not data.id:
             raise Exception("No id in response")
         if not data.type:
             raise Exception("No type in response")
         if not data.name:
             raise Exception("No name in response")
+        if not data.topic:
+            raise Exception("No topic in response")
+        if not data.created_at:
+            raise Exception("No created_at in response")
+        if not data.created_by:
+            raise Exception("No created_by in response")
+        if not data.server_id:
+            raise Exception("No server_id in response")
+        if not data.group_id:
+            raise Exception("No group_id in response")
+        if not data.is_public:
+            raise Exception("No is_public in response")
+        bot.delete_channel(data.id)
         
 
         print("Test 2: Passed")
