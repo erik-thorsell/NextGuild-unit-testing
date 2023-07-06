@@ -6,7 +6,7 @@ def messages_test(bot):
         print("Test 1: Starting")
         channel_id = "f03de35e-27de-49ef-a021-8748d205dc48"
         content = "Test Message"
-        embed = Embed(title="Hello <@mb1K7oKd>", description="Test Embed")
+        embed = Embed(title="Hello", description="Test Embed <@mb1K7oKd>")
         reply_message_id = ["4925c0d7-4d71-4e57-981c-0e1f7d6b919d"]
         is_private = True
         is_silent = True
